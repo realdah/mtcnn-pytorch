@@ -3,7 +3,6 @@
     generate positive, negative, positive images whose size are 12*12 and feed into PNet
 """
 import sys
-import numpy as np
 import cv2
 import os
 sys.path.append(os.getcwd())
