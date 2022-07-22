@@ -9,7 +9,7 @@ sys.path.append(os.getcwd())
 import numpy as np
 from mtcnn.data_preprocess.utils import IoU
 
-prefix = ''
+prefix = './data_set/face_detection/WIDERFACE/WIDER_train/WIDER_train/images/'
 anno_file = "./anno_store/anno_train.txt"
 im_dir = "./data_set/face_detection/WIDERFACE/WIDER_train/WIDER_train/images"
 pos_save_dir = "./data_set/train/12/positive"
@@ -41,7 +41,7 @@ idx = 0
 box_idx = 0
 for annotation in annotations:
     annotation = annotation.strip().split(' ')
-    im_path = os.path.join(prefix, annotation[0])
+    im_path = os.path.join(prefix, f"{annotation[0]}.jpg")
     print(im_path)
     bbox = list(map(float, annotation[1:]))
     boxes = np.array(bbox, dtype=np.int32).reshape(-1, 4)
@@ -77,8 +77,8 @@ for annotation in annotations:
         x1, y1, x2, y2 = box
         # w = x2 - x1 + 1
         # h = y2 - y1 + 1
-        w = x2 - x1 + 1
-        h = y2 - y1 + 1
+        w = abs(x2 - x1) + 1
+        h = abs(y2 - y1) + 1
 
         # ignore small faces
         # in case the ground truth boxes of small faces are not accurate

@@ -11,7 +11,7 @@ with open('anno_train.txt') as f:
 coordinates = []
 names = []
 for content in contents:
-	name = content.split(' ')[0]
+	name = './data_set/face_detection/WIDERFACE/WIDER_train/WIDER_train/images/' + content.split(' ')[0]
 	coordinate = np.array(content.split(' ')[1:-1], dtype=np.int32).reshape(-1, 4)
 	names.append(name)
 	coordinates.append(coordinate)
